@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<body>
+    <div class="container col-md-10 col-md-offset-1">
+        <div class="jumbotron">
+          <h1 class="display-3">Painel do medico</h1>
+          <p class="lead"><%= @medico.nome%> : <%=@medico.especialidade%></p>
+          <p class="lead">Endereço: <%= @medico.endereco %>, <%=@medico.bairro%> - <%=@medico.cidade%>, <%= @medico.estado %></p>
+        </div>
+        <h2>Consultas marcadas</h2>
+        <br>
+        <div>
+            <div class="input-group">
+              <input type="text" class="form-control" id="busca" onkeyup="buscar()" placeholder="Buscar por data...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Buscar</button>
+              </span>
+            </div>
+        </div>
+        <table class="table" id="consultas">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Horario</th>
+              <th>Paciente</th>
+              <th>Convenio</th>
+              <th>Acoes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @medico.atendimentos.each do |consulta| %>
+              <tr>
+                <td>consulta.date</td>
+                <td>consulta.time</td>
+                <td>consulta.paciente.nome</td>
+                <td>consulta.particular</td>
+                <td><button type="button" class="btn btn-danger btn-sm">Cancelar</button></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br><br>
+        
+        <h3>Horários disponibilizados</h3><br>
+        <table class="table" id="consultas">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Início</th>
+              <th>Término</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @medico.disponibilidades.each do |disponibilidade| %>
+              <tr>
+                <td>disponibilidade.date</td>
+                <td>disponibilidade.horario_inicial</td>
+                <td>disponibilidade.horario_final</td>
+                <td><button type="button" class="btn btn-danger btn-sm">Excluir</button></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br><br>
+        
+        
+          <form action="/disponibilidades" class="new_disponibilidade" id="new_disponibilidade" method="post">
+              <input name="disponibilidade_medico_id" type="hidden" value = <%@medico.id%> />
+              <h3>Adicionar disponibilidade</h3><br>
+              <div class="form-group row">
+                <div class="col-4">
+                  <label for="disponibilidade_date" class="col-4 col-form-label">Data</label>
+                  <input class="form-control" type="date" name="disponibilidade[date]" id="disponibilidade_date">
+                </div>
+                <div class="col-4">
+                  <label for="disponibilidade_horario_inicial" class="col-4 col-form-label">Início</label>
+                  <input class="form-control" type="time" name="disponibilidade[horario_inicial]" id="disponibilidade_horario_inicial">
+                </div>
+                <div class="col-4">
+                  <label for="disponibilidade_horario_final" class="col-4 col-form-label">Término</label>
+                  <input class="form-control" type="time" name="disponibilidade[horario_final]" id="disponibilidade_horario_final">
+                </div>
+              </div>
+              <br>
+              <input name="Adicionar" type="submit" value="Adicionar" class="btn btn-danger" />
+          </form>
+        <br><br>
+        
+        <script>
+            function buscar() {
+              // Declare variables 
+              var input, filter, table, tr, td, i;
+              input = document.getElementById("busca");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("consultas");
+              tr = table.getElementsByTagName("tr");
+            
+              // Loop through all table rows, and hide those who don't match the search query
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                } 
+              }
+            }
+            </script>
+    </div>
+</body>

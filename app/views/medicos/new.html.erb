@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<body>
+    <div class="container">
+        <br>
+        <h1 class="text-center">Novo médico</h1>
+        <br><br>
+        <%= render 'form' %>
+        <div></div>
+        <div class="col-md-2 col-md-offset-5">
+             <div class="center-block">
+                <%= link_to 'Voltar', medicos_path, :class=>"btn btn-default center-block" %>
+            </div>
+        </div>
+    </div>
+</body>

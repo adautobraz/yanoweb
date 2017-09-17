@@ -1,0 +1,63 @@
+<div class="container col-md-6 col-md-offset-3">
+  <%= form_for(@medico) do |f| %>
+    <% if @medico.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@medico.errors.count, "error") %> prohibited this medico from being saved:</h2>
+  
+        <ul>
+        <% @medico.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="form-group">
+      <%= f.label :nome, 'Nome completo' %><br>
+      <%= f.text_field :nome, :class => "form-control", placeholder:"Seu nome" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :cpf, 'CPF' %><br>
+      <%= f.text_field :cpf, :class => "form-control", placeholder: "Seu CPF"  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, 'Email' %><br>
+      <%= f.text_field :email, :class => "form-control", placeholder: "Seu email"  %>
+    </div>
+    <div class="form-group">
+      <%= f.label :data_nascimento, 'Data de nascimento' %><br>
+      <%= f.date_field :data_nascimento, :class => 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :endereco, 'Endereço' %><br>
+      <%= f.text_field :endereco, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :bairro, 'Bairro' %><br>
+      <%= f.text_field :bairro, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :cidade, 'Cidade' %><br>
+      <%= f.text_field :cidade, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :estado %><br>
+      <%= f.select( :estado, ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO' ], {}, { :class => "form-control"}) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :crm, 'CRM' %><br>
+      <%= f.text_field :crm, :class => "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :especialidade, 'Especialidade' %><br>
+      <%= f.select(:especialidade, [ "Acupuntura",   "Alergia e Imunologia", "Anestesiologia", "Angiologia", "Cancerologia", "Cardiologia",  "Cirurgia Cardiovascular",  "Cirurgia da Mão",  "Cirurgia de Cabeça e Pescoço", "Cirurgia do Aparelho Digestivo",  "Cirurgia Geral",  "Cirurgia Pediátrica",  "Cirurgia Plástica",  "Cirurgia Torácica",   "Cirurgia Vascular",  "Clínica Médica",  "Coloproctologia", "Dermatologia", "Endocrinologia e Metabologia", "Endoscopia",  "Gastroenterologia",  "Geriatria",  "Ginecologia",  "Hematologia e Hemoterapia",  "Homeopatia",  "Infectologia",  "Mastologia",  "Neurocirurgia",  "Neurologia",  "Nutrologia",  "Obstetrícia",  "Oftalmologia", "Ortopedia e Traumatologia","Otorrinolaringologia", "Patologia", "Pediatria", "Pneumologia", "Psiquiatria", "Radiologia", "Radioterapia",  "Reumatologia",  "Urologia"], {}, { :class => "form-control"}) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :local_trabalho %><br>
+      <%= f.text_field :local_trabalho, :class => "form-control" %>
+    </div>
+    <div class="form-group center-block">
+      <%= f.submit 'Salvar', :class => 'btn btl-lg btn-primary center-block' %>
+    </div>
+  <% end %>
+</div>

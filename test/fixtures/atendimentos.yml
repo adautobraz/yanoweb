@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  particular: 
+  data: 2017-09-12
+  horario: 2017-09-12 00:27:04
+
+two:
+  particular: 
+  data: 2017-09-12
+  horario: 2017-09-12 00:27:04

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Particular:</strong>
+  <%= @atendimento.particular %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @atendimento.data %>
+</p>
+
+<p>
+  <strong>Horario:</strong>
+  <%= @atendimento.horario %>
+</p>
+
+<%= link_to 'Edit', edit_atendimento_path(@atendimento) %> |
+<%= link_to 'Back', atendimentos_path %>

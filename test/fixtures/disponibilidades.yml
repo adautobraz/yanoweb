@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2017-09-17
+  horario_inicial: 2017-09-17 22:21:44
+  horario_final: 2017-09-17 22:21:44
+
+two:
+  date: 2017-09-17
+  horario_inicial: 2017-09-17 22:21:44
+  horario_final: 2017-09-17 22:21:44

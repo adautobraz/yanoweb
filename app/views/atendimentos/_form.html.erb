@@ -1,29 +1,80 @@
-<%= form_for(@atendimento) do |f| %>
-  <% if @atendimento.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@atendimento.errors.count, "error") %> prohibited this atendimento from being saved:</h2>
-
-      <ul>
-      <% @atendimento.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="container col-md-6 col-md-offset-3">
+  
+  <form>
+    <div class="form-group">
+      <label id="labelSpecialty">Selecione a especialidade</label>
+      <select class="form-control" id="inputSpecialty">
+        <option>Acupuntura</option>
+        <option>Alergia e Imunologia</option>
+        <option>Anestesiologia</option>
+        <option>Angiologia</option>
+        <option>Cancerologia</option>
+        <option>Cardiologia</option>
+        <option>Cirurgia Cardiovascular</option>
+        <option>Cirurgia da M&atilde;o</option>
+        <option>Cirurgia de cabe&ccedil;a e pesco&ccedil;o</option>
+        <option>Cirurgia do Aparelho Digestivo</option>
+        <option>Cirurgia Geral</option>
+        <option>Cirurgia Pedi&aacute;trica</option>
+        <option>Cirurgia Pl&aacute;stica</option>
+        <option>Cirurgia Tor&aacute;cica</option>
+        <option>Cirurgia Vascular</option>
+        <option>Cl&iacute;nica M&eacute;dica</option>
+        <option>Coloproctologia</option>
+        <option>Dermatologia</option>
+        <option>Endocrinologia e Metabologia</option>
+        <option>Endoscopia</option>
+        <option>Gastroenterologia</option>
+        <option>Geriatria</option>
+        <option>Ginecologia</option>
+        <option>Hematologia e Hemoterapia</option>
+        <option>Homeopatia</option>
+        <option>Infectologia</option>
+        <option>Mastologia</option>
+        <option>Neurocirurgia</option>
+        <option>Neurologia</option>
+        <option>Nutrologia</option>
+        <option>Obstetr&iacute;cia</option>
+        <option>Oftalmologia</option>
+        <option>Ortopedia e Traumatologia</option>
+        <option>Otorrinolaringologia</option>
+        <option>Patologia</option>
+        <option>Pediatria</option>
+        <option>Pneumologia</option>
+        <option>Psiquiatria</option>
+        <option>Radiologia</option>
+        <option>Radioterapia</option>
+        <option>Reumatologia</option>
+        <option>Urologia</option>
+      </select>
+    </div>
+  </form>
+  
+  <%= form_for(@atendimento) do |f| %>
+    <% if @atendimento.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@atendimento.errors.count, "error") %> prohibited this atendimento from being saved:</h2>
+  
+        <ul>
+        <% @atendimento.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="form-group">
+      <%= f.label :medico %><br>
+      <%= f.select( :medico_id, @medicos, {}, { :class => "form-control"}) %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :horario %><br>
+      <%= f.select( :horario, @horarios, {}, { :class => "form-control"}) %>
+    </div>
+  
+    <div class="form-group center-block">
+      <%= f.submit 'Salvar', :class => 'btn btl-lg btn-primary center-block' %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :particular %><br>
-    <%= f.text_field :particular %>
-  </div>
-  <div class="field">
-    <%= f.label :data %><br>
-    <%= f.date_select :data %>
-  </div>
-  <div class="field">
-    <%= f.label :horario %><br>
-    <%= f.time_select :horario %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

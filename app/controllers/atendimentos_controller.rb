@@ -15,6 +15,9 @@ class AtendimentosController < ApplicationController
   # GET /atendimentos/new
   def new
     @atendimento = Atendimento.new
+    @especialidades = [ "Acupuntura",   "Alergia e Imunologia", "Anestesiologia", "Angiologia", "Cancerologia", "Cardiologia",  "Cirurgia Cardiovascular",  "Cirurgia da Mão",  "Cirurgia de Cabeça e Pescoço", "Cirurgia do Aparelho Digestivo",  "Cirurgia Geral",  "Cirurgia Pediátrica",  "Cirurgia Plástica",  "Cirurgia Torácica",   "Cirurgia Vascular",  "Clínica Médica",  "Coloproctologia", "Dermatologia", "Endocrinologia e Metabologia", "Endoscopia",  "Gastroenterologia",  "Geriatria",  "Ginecologia",  "Hematologia e Hemoterapia",  "Homeopatia",  "Infectologia",  "Mastologia",  "Neurocirurgia",  "Neurologia",  "Nutrologia",  "Obstetrícia",  "Oftalmologia", "Ortopedia e Traumatologia","Otorrinolaringologia", "Patologia", "Pediatria", "Pneumologia", "Psiquiatria", "Radiologia", "Radioterapia",  "Reumatologia",  "Urologia"]
+    @medicos = ["Fake", "Fak", "Fa", "F"]
+    @horarios = ["to colocando", "uns horarios", "aqui"]
   end
 
   # GET /atendimentos/1/edit

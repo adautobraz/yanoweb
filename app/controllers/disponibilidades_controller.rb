@@ -1,5 +1,5 @@
 class DisponibilidadesController < ApplicationController
-  before_action :set_medio, only: [:show, :edit, :update, :destroy]
+  before_action :set_disponibilidade, only: [:show, :edit, :update, :destroy]
 
   # GET /@disponibilidades
   # GET /Disponibilidades.json
@@ -24,51 +24,39 @@ class DisponibilidadesController < ApplicationController
   # POST /Disponibilidades
   # POST /Disponibilidades.json
   def create
-    @disponibilidade = Disponibilidade.new(Disponibilidade_params)
+    @disponibilidade = Disponibilidade.new(disponibilidade_params)
+    @medico = Medico.find(disponibilidade_params[:medico_id])
 
     respond_to do |format|
       if @disponibilidade.save
-        format.html { redirect_to @disponibilidade, notice: 'Disponibilidade was successfully created.' }
+        format.html { redirect_to @medico, notice: 'Disponibilidade was successfully created.' }
         format.json { render :show, status: :created, location: @disponibilidade }
       else
-        format.html { render :new }
+        format.html { redirect_to @medico, notice: 'Disponibilidade incompleta' }
         format.json { render json: @disponibilidade.errors, status: :unprocessable_entity }
       end
     end
   end
-
-  # PATCH/PUT /Disponibilidades/1
-  # PATCH/PUT /Disponibilidades/1.json
-  def update
-    respond_to do |format|
-      if @disponibilidade.update(Disponibilidade_params)
-        format.html { redirect_to @disponibilidade, notice: 'Disponibilidade was successfully updated.' }
-        format.json { render :show, status: :ok, location: @disponibilidade }
-      else
-        format.html { render :edit }
-        format.json { render json: @disponibilidade.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
+  
   # DELETE /Disponibilidades/1
   # DELETE /Disponibilidades/1.json
   def destroy
+    @medico = Medico.find(@disponibilidade.medico_id)
     @disponibilidade.destroy
     respond_to do |format|
-      format.html { redirect_to Disponibilidades_url, notice: 'Disponibilidade was successfully destroyed.' }
+      format.html { redirect_to @medico, notice: 'Disponibilidade retirada' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_Disponibilidade
+    def set_disponibilidade
       @disponibilidade = Disponibilidade.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def disponibilidade_params
-      params.require(:disponibilidade).permit(:date, :horario_inicial, :horario_final)
+      params.require(:disponibilidade).permit(:date, :horario_inicial, :horario_final, :medico_id)
     end
 end

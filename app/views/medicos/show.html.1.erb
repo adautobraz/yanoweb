@@ -52,11 +52,11 @@
             </tr>
           </thead>
           <tbody>
-            <% @medico.disponibilidades.each do |d| %>
+            <% @medico.disponibilidades.each do |disponibilidade| %>
               <tr>
-                <td><%= d.date.strftime('%d/%m/%Y') %></td>
-                <td><%= d.horario_inicial.strftime('%H:%M') %></td>
-                <td><%= d.horario_final.strftime('%H:%M') %></td>
+                <td>disponibilidade.date</td>
+                <td>disponibilidade.horario_inicial</td>
+                <td>disponibilidade.horario_final</td>
                 <td><button type="button" class="btn btn-danger btn-sm">Excluir</button></td>
               </tr>
             <% end %>
@@ -64,28 +64,27 @@
         </table>
         <br><br>
         
-        <h3>Adicionar disponibilidade</h3><br>
-        <%= form_for(Disponibilidade.new) do |f| %>
-          
-          <div class="form-group row">
-            <%= f.hidden_field :medico_id, value: @medico.id %>
-            <div class="col-4">
-              <%= f.label :date, 'Data', :class => "col-4 col-form-label" %>
-              <%= f.date_field :date, :class => "form-control" %>
-            </div>
-            <div class="col-4">
-              <%= f.label :horario_inicial, 'Início', :class => "col-4 col-form-label" %>
-              <%= f.time_field :horario_inicial, :class => "form-control" %>
-            </div>
-            <div class="col-4">
-              <%= f.label :horario_final, 'Término', :class => "col-4 col-form-label" %>
-              <%= f.time_field :horario_final, :class => "form-control" %>
-            </div>
-          </div>
-          <div class="form-group center-block">
-            <%= f.submit 'Adicionar', :class => 'btn btn-danger center-block' %>
-          </div>
-        <% end %>
+        
+          <form action="/disponibilidades" class="new_disponibilidade" id="new_disponibilidade" method="post">
+              <input name="disponibilidade_medico_id" type="hidden" value = <%@medico.id%> />
+              <h3>Adicionar disponibilidade</h3><br>
+              <div class="form-group row">
+                <div class="col-4">
+                  <label for="disponibilidade_date" class="col-4 col-form-label">Data</label>
+                  <input class="form-control" type="date" name="disponibilidade[date]" id="disponibilidade_date">
+                </div>
+                <div class="col-4">
+                  <label for="disponibilidade_horario_inicial" class="col-4 col-form-label">Início</label>
+                  <input class="form-control" type="time" name="disponibilidade[horario_inicial]" id="disponibilidade_horario_inicial">
+                </div>
+                <div class="col-4">
+                  <label for="disponibilidade_horario_final" class="col-4 col-form-label">Término</label>
+                  <input class="form-control" type="time" name="disponibilidade[horario_final]" id="disponibilidade_horario_final">
+                </div>
+              </div>
+              <br>
+              <input name="Adicionar" type="submit" value="Adicionar" class="btn btn-danger" />
+          </form>
         <br><br>
         
         <script>

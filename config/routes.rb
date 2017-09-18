@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  
+  root to: "medicos#home"
   resources :atendimentos
   resources :pacientes
   resources :medicos
   resources :disponibilidades
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

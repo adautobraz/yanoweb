@@ -1,6 +1,7 @@
 class MedicosController < ApplicationController
   before_action :set_medico, only: [:show, :edit, :update, :destroy]
 
+
   # GET /medicos
   # GET /medicos.json
   def index

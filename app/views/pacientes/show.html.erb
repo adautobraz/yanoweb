@@ -30,16 +30,16 @@
           <tbody>
             <% @paciente.atendimentos.each do |consulta| %>
               <tr>
-                <td>consulta.date</td>
-                <td>consulta.time</td>
-                <td>consulta.paciente.nome</td>
-                <td>consulta.particular</td>
-                <td><button type="button" class="btn btn-danger btn-sm">Cancelar</button></td>
+                <td><%= consulta.data %></td>
+                <td><%= consulta.horario %></td>
+                <td><%= consulta.paciente.nome %></td>
+                <td><%= consulta.paciente.plano_de_saude %></td>
+                <td><%= link_to 'Excluir', paciente_atendimento_path(paciente_id: @paciente, id: consulta.id),:method => :delete, :class=>"btn btn-danger btn-sm" %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
         <br><br>
-        
+        <%= link_to 'Nova consulta', new_paciente_atendimento_path(@paciente), :class => "btn btn-danger" %>
     </div>
 </body>

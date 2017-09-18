@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   
   root to: "medicos#home"
-  resources :atendimentos
-  resources :pacientes
+  resources :pacientes do
+    resources :atendimentos
+  end
+
   resources :medicos
   resources :disponibilidades
   

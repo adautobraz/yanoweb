@@ -50,13 +50,13 @@
     </div>
   </form>
   
-  <%= form_for(@atendimento) do |f| %>
-    <% if @atendimento.errors.any? %>
+<%= form_for(@paciente_atendimento, url: paciente_atendimentos_path(@paciente)) do |f| %>
+    <% if @paciente_atendimento.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@atendimento.errors.count, "error") %> prohibited this atendimento from being saved:</h2>
+        <h2><%= pluralize(@paciente_atendimento.errors.count, "error") %> prohibited this atendimento from being saved:</h2>
   
         <ul>
-        <% @atendimento.errors.full_messages.each do |message| %>
+        <% @paciente_atendimento.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
         </ul>
@@ -65,16 +65,27 @@
     
     <div class="form-group">
       <%= f.label :medico %><br>
-      <%= f.select( :medico_id, @medicos, {}, { :class => "form-control"}) %>
+      <%= f.select( :medico_id, grouped_options_for_select(@mapEspecialidade_Nome), {}, { :class => "form-control"}) %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :medico %><br>
+      <%= f.select( :medico_id, grouped_options_for_select(@mapEspecialidade_Nome), {}, { :class => "form-control"}) %>
+    </div>
+    
+     <div class="form-group">
+      <%= f.label :data %><br>
+      <%= f.select( :data, grouped_options_for_select(@mapEspecialidadeNome_Datas), {}, { :class => "form-control"}) %>
     </div>
     
     <div class="form-group">
       <%= f.label :horario %><br>
-      <%= f.select( :horario, @horarios, {}, { :class => "form-control"}) %>
+      <%= f.select( :horario, grouped_options_for_select(@mapEspecialidadeNomeDatas_Horarios), {}, { :class => "form-control"}) %>
     </div>
   
     <div class="form-group center-block">
       <%= f.submit 'Salvar', :class => 'btn btl-lg btn-primary center-block' %>
     </div>
   <% end %>
+  
 </div>
